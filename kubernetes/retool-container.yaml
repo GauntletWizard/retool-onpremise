@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: api
@@ -90,6 +90,14 @@ spec:
       - name: retool-pv
         persistentVolumeClaim:
           claimName: retool-pvc
+  volumeClaimTemplates:
+  - metadata:
+      name: retool-pv
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 2Gi
 ---
 apiVersion: v1
 kind: Service
@@ -105,14 +113,3 @@ spec:
       targetPort: 3000
   selector:
     app: api
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: retool-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
