@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: api
+  name: api
+spec:
+  template:
+  volumeClaimTemplates:
+  - metadata:
+      name: retool-pv
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          # Increase the amount of storage requested
+          storage: 20Gi
