@@ -7,6 +7,12 @@ resources:
 - retool-postgres.yaml
 - retool-workflows-backend-container.yaml
 - retool-workflows-worker-container.yaml
+images:
+  # These should be set to the same version
+- name: tryretool/code-executor-service
+  newTag: 3.x.x
+- name: tryretool/backend
+  newTag: 3.x.x
 configMapGenerator:
 - name: retool-config
   envs:
