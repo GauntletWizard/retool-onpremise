@@ -7,3 +7,9 @@ resources:
 - retool-postgres.yaml
 - retool-workflows-backend-container.yaml
 - retool-workflows-worker-container.yaml
+configMapGenerator:
+- name: retool-config
+  envs:
+  - retool.env
+  - retool-temporal.env
+  - retool-postgres.env
